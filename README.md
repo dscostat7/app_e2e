@@ -21,7 +21,7 @@
 
 An application for study Automation Tests
 
-## 🔧 Tecnologias
+## 🔧 Tecnologies
 
 - Laravel 5
 - PHPUnit
