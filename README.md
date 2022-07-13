@@ -1,1 +1,3 @@
-# app_e2e
+# Application for study Automation Tests 
+
+## Using PHPUnit
