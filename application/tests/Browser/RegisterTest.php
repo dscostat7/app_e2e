@@ -19,7 +19,7 @@ class RegisterTest extends TestCase
     $inputPassword = $driver->findElement(WebDriverBy::id('password'));
     
     $inputName->sendKeys('Test Name');
-    $inputEmail->sendKeys('test@name.com');
+    $inputEmail->sendKeys(md5(time()) . '@example.com');
     $inputPassword->sendKeys('123');
     
     // $inputPassword->sendKeys(WebDriverKeys::ENTER);
