@@ -1,6 +1,4 @@
 <?php
-
-namespace Tests\RegisterTest;
   
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
