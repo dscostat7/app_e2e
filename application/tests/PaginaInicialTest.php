@@ -23,5 +23,7 @@ class PaginaInicialTest extends TestCase
             ->getText();
 
         self::assertSame('Séries', $textoH1);
+        
+        $driver->close();
     }
 }
