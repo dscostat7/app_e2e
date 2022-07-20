@@ -2,28 +2,37 @@
 
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriver;
 use Facebook\WebDriver\WebDriverBy;
 use PHPUnit\Framework\TestCase;
 
 class PaginaInicialTest extends TestCase
 {
-    public function testPaginaInicialNaoLogadaDeveSerListagemDeSeries()
+    private static WebDriver $driver;
+
+    public static function setUpBeforeClass(): void
     {
         // Arrange
         $host = 'http://localhost:4444/wd/hub';
-        $driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
+        self::$driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
+    }
 
+    public function testPaginaInicialNaoLogadaDeveSerListagemDeSeries()
+    {
         // Act
-        $driver->get('http://localhost:8080');
+        self::$driver->get('http://localhost:8080');
 
         // Assert
         $h1Locator = WebDriverBy::tagName('h1');
-        $textoH1 = $driver
+        $textoH1 = self::$driver
             ->findElement($h1Locator)
             ->getText();
 
         self::assertSame('Séries', $textoH1);
-        
-        $driver->close();
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        self::$driver->close();
     }
 }
