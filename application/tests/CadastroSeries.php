@@ -42,5 +42,7 @@ class CadastroSeriesTest extends TestCase
             'Série com suas respectivas temporadas e episódios adicionada.',
             trim($driver->findElement(WebDriverBy::cssSelector('div.alert.alert-success'))->getText())
         );
+        
+        $driver->close();
     }
 }
