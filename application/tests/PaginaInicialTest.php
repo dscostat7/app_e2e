@@ -1,5 +1,6 @@
 <?php
 
+use Alura\E2E\Tests\PageObject\PaginaListagemSeries;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriver;
@@ -21,14 +22,10 @@ class PaginaInicialTest extends TestCase
     {
         // Act
         self::$driver->get('http://localhost:8080');
+        $paginaListagem = new PaginaListagemSeries(self::$driver);
 
         // Assert
-        $h1Locator = WebDriverBy::tagName('h1');
-        $textoH1 = self::$driver
-            ->findElement($h1Locator)
-            ->getText();
-
-        self::assertSame('Séries', $textoH1);
+        self::assertSame('Séries', $paginaListagem->titulo());
     }
 
     public static function tearDownAfterClass(): void

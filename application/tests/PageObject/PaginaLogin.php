@@ -1,6 +1,6 @@
 <?php
 
-namespace application\Tests\PageObject;
+namespace Alura\E2E\Tests\PageObject;
 
 use Facebook\WebDriver\WebDriver;
 use Facebook\WebDriver\WebDriverBy;

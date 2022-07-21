@@ -1,7 +1,7 @@
 <?php
 
-use application\Tests\PageObject\PaginaCadastroSeries;
-use application\Tests\PageObject\PaginaLogin;
+use Alura\E2E\Tests\PageObject\PaginaCadastroSeries;
+use Alura\E2E\Tests\PageObject\PaginaLogin;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriver;
