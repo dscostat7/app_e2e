@@ -1,5 +1,7 @@
 <?php
 
+use Alura\E2E\Tests\PageObject\PaginaCadastroSeries;
+use Alura\E2E\Tests\PageObject\PaginaLogin;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriver;
@@ -16,34 +18,19 @@ class CadastroSeriesTest extends TestCase
         // Arrange
         $host = 'http://localhost:4444/wd/hub';
         self::$driver = RemoteWebDriver::create($host, DesiredCapabilities::chrome());
-        self::$driver->get('http://0.0.0.0:8080/adicionar-serie');
 
-        self::$driver->findElement(WebDriverBy::id('email'))->sendKeys('email@example.com');
-        self::$driver->findElement(WebDriverBy::id('password'))->sendKeys('123')->submit();
-    }
-
-    protected function setUp(): void
-    {
-        self::$driver->get('http://0.0.0.0:8080/adicionar-serie');
+        $paginaLogin = new PaginaLogin(self::$driver);
+        $paginaLogin->realizaLoginCom('email@example.com', '123');
     }
 
     public function testCadastrarNovaSerieDeveRedirecionarParaLista()
     {
-        // Act
-        $inputNome = self::$driver->findElement(WebDriverBy::id('nome'));
-        $inputGenero = self::$driver->findElement(WebDriverBy::id('genre'));
-        $inputTemporadas = self::$driver->findElement(WebDriverBy::id('qtd_temporadas'));
-        $inputEpisodios = self::$driver->findElement(WebDriverBy::id('ep_por_temporada'));
-
-        $inputNome->sendKeys('Teste');
-
-        $selectGenero = new WebDriverSelect($inputGenero);
-        $selectGenero->selectByValue('acao');
-
-        $inputTemporadas->sendKeys('1');
-        $inputEpisodios->sendKeys('1');
-
-        $inputEpisodios->submit();
+        $paginaCadastro = new PaginaCadastroSeries(self::$driver);
+        $paginaCadastro->preencheNome('Teste')
+            ->selecionaGenero('acao')
+            ->comTemporadas(1)
+            ->comEpisodios(1)
+            ->enviaFormulario();
 
         // Assert
         self::assertSame('http://0.0.0.0:8080/series', self::$driver->getCurrentURL());
