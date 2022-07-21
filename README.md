@@ -2,7 +2,7 @@
 	Study from Alura <Component_feedback />
 </h1>
 
-<p align="center">PHP and Selenium: tests e2e.</p>
+<p align="center">PHP and Selenium - tests e2e.</p>
 
 <p align="center">
   <img alt="License" src="https://img.shields.io/badge/Laravel-red">
